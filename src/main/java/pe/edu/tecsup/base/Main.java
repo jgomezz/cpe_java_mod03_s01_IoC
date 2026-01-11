@@ -1,4 +1,4 @@
-package pe.edu.tecsup;
+package pe.edu.tecsup.base;
 
 class EmailService {
     void sendEmail(String mensaje) {
@@ -7,7 +7,7 @@ class EmailService {
 }
 
 class Notification {
-    private  EmailService emailService;
+    private EmailService emailService;
 
     Notification(){
         this.emailService = new EmailService();
