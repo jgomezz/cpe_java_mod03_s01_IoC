@@ -22,8 +22,12 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Fuerte acoplamiento con el servicio de email
         Notification notification = new Notification();
+
         notification.execute("Hola mundo");
+
+        // ¿Como hacer para enviar una notificacion por Whatsapp?
 
     }
 }
