@@ -4,23 +4,34 @@ interface Message {
     void send(String mensaje);
 }
 
-
 class EmailService implements Message{
     @Override
     public void send(String mensaje) {
-        System.out.println(mensaje);
+        System.out.println("[Email] -> " + mensaje);
     }
 }
 
-class Notification {
-    private  EmailService emailService;
+class WhatsAppService implements Message{
+    @Override
+    public void send(String mensaje) {
+        System.out.println("[WhatsApp] -> " + mensaje);
+    }
+}
 
-    Notification(){
-        this.emailService = new EmailService();
+
+
+class Notification {
+    //private  EmailService emailService;
+    private Message message;
+
+    Notification(Message message){
+        // Inversion de control
+       // this.emailService = new EmailService();
+        this.message = message;
     }
 
-    public void execute(String message) {
-        emailService.send(message);
+    public void execute(String msg) {
+        this.message.send(msg);
     }
 }
 
@@ -29,12 +40,13 @@ public class Main_IoC {
 
     public static void main(String[] args) {
 
-        // Fuerte acoplamiento con el servicio de email
-        Notification notification = new Notification();
+        // ¿Como hacer para enviar una notificacion por Whatsapp?
+
+        Message service = new WhatsAppService(); // new EmailService();
+        Notification notification = new Notification(service);
 
         notification.execute("Hola mundo");
 
-        // ¿Como hacer para enviar una notificacion por Whatsapp?
 
     }
 
