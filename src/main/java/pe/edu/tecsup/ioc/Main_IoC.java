@@ -1,8 +1,13 @@
 package pe.edu.tecsup.ioc;
 
+interface Message {
+    void send(String mensaje);
+}
 
-class EmailService {
-    void sendEmail(String mensaje) {
+
+class EmailService implements Message{
+    @Override
+    public void send(String mensaje) {
         System.out.println(mensaje);
     }
 }
@@ -14,8 +19,8 @@ class Notification {
         this.emailService = new EmailService();
     }
 
-    void execute(String message) {
-        emailService.sendEmail(message);
+    public void execute(String message) {
+        emailService.send(message);
     }
 }
 
