@@ -6,17 +6,24 @@ class EmailService {
     }
 }
 
-public class Main {
-
+class Notification {
     private  EmailService emailService;
 
-    Main(){
+    Notification(){
         this.emailService = new EmailService();
     }
 
-    public static void main(String[] args) {
-        Main main = new Main();
+    void execute(String message) {
+        emailService.sendEmail(message);
+    }
+}
 
-        main.emailService.sendEmail("Hola mundo");
+public class Main {
+
+    public static void main(String[] args) {
+
+        Notification notification = new Notification();
+        notification.execute("Hola mundo");
+
     }
 }
